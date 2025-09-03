@@ -73,7 +73,7 @@ namespace ECommercePlatform.Infrastructure.Data.Configurations
             builder.HasOne(i => i.Variant)
                 .WithMany(pv => pv.Inventories)
                 .HasForeignKey(i => i.VariantId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

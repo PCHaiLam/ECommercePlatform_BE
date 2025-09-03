@@ -56,12 +56,12 @@ namespace ECommercePlatform.Infrastructure.Data.Configurations
             builder.HasOne(ci => ci.Product)
                 .WithMany(p => p.CartItems)
                 .HasForeignKey(ci => ci.ProductId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(ci => ci.Variant)
                 .WithMany(pv => pv.CartItems)
                 .HasForeignKey(ci => ci.VariantId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

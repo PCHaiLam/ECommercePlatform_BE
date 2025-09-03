@@ -47,12 +47,12 @@ namespace ECommercePlatform.Infrastructure.Data.Configurations
             builder.HasOne(wi => wi.Product)
                 .WithMany(p => p.WishlistItems)
                 .HasForeignKey(wi => wi.ProductId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(wi => wi.Variant)
                 .WithMany(pv => pv.WishlistItems)
                 .HasForeignKey(wi => wi.VariantId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

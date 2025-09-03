@@ -64,7 +64,7 @@ namespace ECommercePlatform.Infrastructure.Data.Configurations
             builder.HasOne(r => r.Payment)
                 .WithMany(p => p.Refunds)
                 .HasForeignKey(r => r.PaymentId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(r => r.Order)
                 .WithMany(o => o.Refunds)
