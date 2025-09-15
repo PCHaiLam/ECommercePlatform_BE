@@ -25,9 +25,9 @@ namespace ECommercePlatform.API.Startup.Middleware
             {
                 _logger.LogError(ex, "Unhandled exception");
 
-                var response = HandleException(ex);
+                var (response, statusCode) = HandleException(ex);
                 
-                context.Response.StatusCode = response.StatusCode;
+                context.Response.StatusCode = statusCode;
                 context.Response.ContentType = "application/json";
 
                 var options = new JsonSerializerOptions
@@ -39,15 +39,15 @@ namespace ECommercePlatform.API.Startup.Middleware
             }
         }
 
-        private ApiResponse HandleException(Exception ex)
+        private (ApiResponse response, int statusCode) HandleException(Exception ex)
         {
             return ex switch
             {
-                KeyNotFoundException => ApiResponse.ErrorResult("Resource not found", 404),
-                ArgumentException => ApiResponse.ErrorResult(ex.Message, 400),
-                UnauthorizedAccessException => ApiResponse.ErrorResult("Unauthorized access", 401),
-                InvalidOperationException => ApiResponse.ErrorResult(ex.Message, 409),
-                _ => ApiResponse.ErrorResult("An unexpected error occurred", 500)
+                KeyNotFoundException => (ApiResponse.ErrorResult(new List<string> { "Resource not found" }), 404),
+                ArgumentException => (ApiResponse.ErrorResult(new List<string> { ex.Message }), 400),
+                UnauthorizedAccessException => (ApiResponse.ErrorResult(new List<string> { "Unauthorized access" }), 401),
+                InvalidOperationException => (ApiResponse.ErrorResult(new List<string> { ex.Message }), 409),
+                _ => (ApiResponse.ErrorResult(new List<string> { "An unexpected error occurred" }), 500)
             };
         }
     }
