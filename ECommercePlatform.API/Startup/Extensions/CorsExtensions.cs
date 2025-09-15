@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ECommercePlatform.API.Startup
+namespace ECommercePlatform.API.Startup.Extensions
 {
     public static class CorsExtensions
     {

@@ -1,9 +1,9 @@
 using ECommercePlatform.Core.Entities;
 using FluentValidation;
 
-namespace ECommercePlatform.Core.Validators
+namespace ECommercePlatform.Core.Validators.User
 {
-    public class UserValidator : AbstractValidator<User>
+    public class UserValidator : AbstractValidator<Core.Entities.User>
     {
         public UserValidator()
         {
@@ -50,3 +50,5 @@ namespace ECommercePlatform.Core.Validators
         }
     }
 }
+
+

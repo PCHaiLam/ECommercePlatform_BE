@@ -1,13 +1,11 @@
-using ECommercePlatform.API.Startup;
+using ECommercePlatform.API.Startup.Extensions;
 using ECommercePlatform.API.Startup.Middleware;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidationExtensions();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

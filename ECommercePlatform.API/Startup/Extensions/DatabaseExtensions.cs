@@ -1,7 +1,7 @@
 using ECommercePlatform.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommercePlatform.API.Startup
+namespace ECommercePlatform.API.Startup.Extensions
 {
     public static class DatabaseExtensions
     {
