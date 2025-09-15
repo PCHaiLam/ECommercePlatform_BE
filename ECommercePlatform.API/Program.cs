@@ -1,10 +1,13 @@
 using ECommercePlatform.API.Startup;
 using ECommercePlatform.API.Startup.Middleware;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -23,6 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ResponseWrapperMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
