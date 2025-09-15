@@ -36,7 +36,6 @@ namespace ECommercePlatform.Core.DTOs
             {
                 Success = true,
                 Data = data,
-                Errors = null
             };
         }
 
@@ -45,7 +44,6 @@ namespace ECommercePlatform.Core.DTOs
             return new ApiResponse
             {
                 Success = false,
-                Data = null,
                 Errors = errors ?? new List<string>()
             };
         }
