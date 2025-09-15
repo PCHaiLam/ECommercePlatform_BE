@@ -37,6 +37,7 @@ namespace ECommercePlatform.Infrastructure.Data
         public DbSet<EmailLog> EmailLogs { get; set; }
         public DbSet<AdminUser> AdminUsers { get; set; }
         public DbSet<SystemSetting> SystemSettings { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -69,6 +70,7 @@ namespace ECommercePlatform.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new EmailLogConfiguration());
             modelBuilder.ApplyConfiguration(new AdminUserConfiguration());
             modelBuilder.ApplyConfiguration(new SystemSettingConfiguration());
+            modelBuilder.ApplyConfiguration(new RefreshTokenConfiguration());
 
             // Global query filters for soft delete
             // modelBuilder.Entity<User>().HasQueryFilter(u => !u.Deleted);
