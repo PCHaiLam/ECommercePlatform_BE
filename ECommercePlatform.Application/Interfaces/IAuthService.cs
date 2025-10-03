@@ -5,7 +5,10 @@ namespace ECommercePlatform.Application.Interfaces
 {
     public interface IAuthService
     {
-        Task<ApiResponse> RegisterAsync(RegisterRequestDto request);
+        Task<AuthResponseDto> RegisterAsync(RegisterRequestDto request);
+        Task<AuthResponseDto> LoginAsync(LoginRequestDto request);
+        Task<AuthResponseDto> RefreshTokenAsync(RefreshTokenRequestDto request);
+        Task LogoutAsync(RefreshTokenRequestDto request);
     }
 }
 

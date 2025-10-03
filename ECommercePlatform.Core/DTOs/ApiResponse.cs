@@ -5,46 +5,52 @@ namespace ECommercePlatform.Core.DTOs
         public bool Success { get; set; }
         public string? Message { get; set; }
         public T? Data { get; set; }
-        public List<string>? Errors { get; set; }
+        public string? ErrorCode { get; set; }
 
-        public static ApiResponse<T> SuccessResult(T data)
+        public static ApiResponse<T> Ok(T data)
         {
             return new ApiResponse<T>
             {
                 Success = true,
                 Data = data,
-                Errors = null
+                Message = null,
+                ErrorCode = null
             };
         }
 
-        public static ApiResponse<T> ErrorResult(List<string>? errors = null)
+        public static ApiResponse<T> Error(string errorCode, string message)
         {
             return new ApiResponse<T>
             {
                 Success = false,
                 Data = default,
-                Errors = errors ?? new List<string>()
+                Message = message,
+                ErrorCode = errorCode
             };
         }
     }
 
     public class ApiResponse : ApiResponse<object>
     {
-        public static new ApiResponse SuccessResult(object? data = null)
+        public static new ApiResponse Ok(object? data = null)
         {
             return new ApiResponse
             {
                 Success = true,
                 Data = data,
+                Message = null,
+                ErrorCode = null
             };
         }
 
-        public static new ApiResponse ErrorResult(List<string>? errors = null)
+        public static new ApiResponse Error(string errorCode, string message)
         {
             return new ApiResponse
             {
                 Success = false,
-                Errors = errors ?? new List<string>()
+                Data = null,
+                Message = message,
+                ErrorCode = errorCode
             };
         }
     }
