@@ -1,16 +1,8 @@
 namespace ECommercePlatform.Core.Exceptions
 {
-    public class ValidationException : Exception
+    public class ValidationException : BaseException
     {
-        public ValidationException() : base()
-        {
-        }
-
-        public ValidationException(string message) : base(message)
-        {
-        }
-
-        public ValidationException(string message, Exception innerException) : base(message, innerException)
+        public ValidationException(string message) : base(message, "VALIDATION_ERROR")
         {
         }
     }

@@ -13,7 +13,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices()
                 .AddDatabase(builder.Configuration)
                 .AddDefaultCors(builder.Configuration)
-                .AddJwtAuth(builder.Configuration);
+                .AddJwtAuth(builder.Configuration)
+                .AddAutoMapperProfiles();
 
 var app = builder.Build();
 
@@ -24,8 +25,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ResponseWrapperMiddleware>();
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<ApiResponseMiddleware>();
 
 app.UseHttpsRedirection();
 

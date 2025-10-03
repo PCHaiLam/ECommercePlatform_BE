@@ -17,15 +17,31 @@ namespace ECommercePlatform.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<ApiResponse>> Register([FromBody] RegisterRequestDto request)
+        public async Task<ActionResult<ApiResponse<AuthResponseDto>>> Register([FromBody] RegisterRequestDto request)
         {
             var result = await _authService.RegisterAsync(request);
-            if (!result.Success)
-            {
-                return BadRequest(result);
-            }
+            return Ok(ApiResponse<AuthResponseDto>.Ok(result));
+        }
 
-            return Ok(result);
+        [HttpPost("login")]
+        public async Task<ActionResult<ApiResponse<AuthResponseDto>>> Login([FromBody] LoginRequestDto request)
+        {
+            var result = await _authService.LoginAsync(request);
+            return Ok(ApiResponse<AuthResponseDto>.Ok(result));
+        }
+
+        [HttpPost("refresh-token")]
+        public async Task<ActionResult<ApiResponse<AuthResponseDto>>> RefreshToken([FromBody] RefreshTokenRequestDto request)
+        {
+            var result = await _authService.RefreshTokenAsync(request);
+            return Ok(ApiResponse<AuthResponseDto>.Ok(result));
+        }
+
+        [HttpPost("logout")]
+        public async Task<ActionResult<ApiResponse<object>>> Logout([FromBody] RefreshTokenRequestDto request)
+        {
+            await _authService.LogoutAsync(request);
+            return Ok(ApiResponse<object>.Ok(new { message = "Logged out successfully" }));
         }
     }
 }
